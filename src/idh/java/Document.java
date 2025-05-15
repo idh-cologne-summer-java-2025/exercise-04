@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.StringTokenizer;
+import java.util.Set;
+import java.util.HashSet;
 
 public class Document implements Iterable<String> {
 	String documentText;
@@ -31,14 +33,29 @@ public class Document implements Iterable<String> {
 		this.documentText = documentText;
 	}
 	
+	//public static final void main(String[] args) throws IOException {
+		//Document d = Document.readFromFile(new File("data/dracula.txt"));
+		//int i = 0;
+		//for (String token : d) {
+			//System.out.println(i++ + ": " + token + " ");
+			//if (i > 100)
+				//break;
+		//}
+		
+	//}
 	public static final void main(String[] args) throws IOException {
-		Document d = Document.readFromFile(new File("data/dracula.txt"));
-		int i = 0;
-		for (String token : d) {
-			System.out.println(i++ + ": " + token + " ");
-			if (i > 100)
-				break;
-		}
+	    Document d = Document.readFromFile(new File("data/dracula.txt"));
+
+	    //  TTR berechnen und ausgeben:
+	    System.out.printf("TTR: %.4f\n", d.ttr());  // Erwartet: ca. 0.1141
+
+	    // Optional: erste 100 Tokens anzeigen
+	    int i = 0;
+	    for (String token : d) {
+	        System.out.println(i++ + ": " + token + " ");
+	        if (i > 100)
+	            break;
+	    }
 	}
 
 	@Override
@@ -59,6 +76,22 @@ public class Document implements Iterable<String> {
 			
 		};
 	}
+	// Hier beginnt die neue Methode:
+	public double ttr() {
+	    Set<String> types = new HashSet<>();
+	    int tokenCount = 0;
+
+	    for (String token : this) {
+	        types.add(token);
+	        tokenCount++;
+	    }
+
+	    if (tokenCount == 0) {
+	        return 0.0;
+	    }
+
+	    return (double) types.size() / tokenCount;
+	}	
 	
 	
 }
