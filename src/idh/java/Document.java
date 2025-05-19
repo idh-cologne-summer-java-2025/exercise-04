@@ -4,7 +4,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.StringTokenizer;
+
 
 public class Document implements Iterable<String> {
 	String documentText;
@@ -31,14 +34,30 @@ public class Document implements Iterable<String> {
 		this.documentText = documentText;
 	}
 	
+	/*type/token
+	1) token zählen
+    2) types zählen --> ist der token schon vorgekommen? wenn nein, = type, wenn ja = nicht mitzählen*/
+	public double ttr() {
+		int itokens = 0;
+		int itype = 0;
+		Set<String> uniqueToken = new HashSet<>();
+		for (String token : this) {
+			itokens++;
+			if (!uniqueToken.contains(token)) { 
+				itype++;
+			}
+			uniqueToken.add(token);
+			
+
+		}
+		double i = (double)itype/(double)itokens;
+		return i;
+	}
+
+	
 	public static final void main(String[] args) throws IOException {
 		Document d = Document.readFromFile(new File("data/dracula.txt"));
-		int i = 0;
-		for (String token : d) {
-			System.out.println(i++ + ": " + token + " ");
-			if (i > 100)
-				break;
-		}
+		System.out.println(d.ttr());
 	}
 
 	@Override
