@@ -44,9 +44,24 @@ public class Document implements Iterable<String> {
 			if (i > 100)
 				break;
 		}
+		System.out.println("TTR: " + d.ttr());
 		
 	}
 
+public double ttr() {
+	Set<String> types = new HashSet<>();
+	int tokens = 0;
+	
+	for (String token : this) {
+		types.add(token);
+		tokens++;
+	}
+	if (tokens == 0) {
+		return 0.0;
+	}
+	return (double) types.size() / tokens;
+}
+	
 	@Override
 	public Iterator<String> iterator() {
 		return new Iterator<String>() {
