@@ -3,7 +3,11 @@ package idh.java;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 import java.util.StringTokenizer;
 
 public class Document implements Iterable<String> {
@@ -34,11 +38,24 @@ public class Document implements Iterable<String> {
 	public static final void main(String[] args) throws IOException {
 		Document d = Document.readFromFile(new File("data/dracula.txt"));
 		int i = 0;
-		for (String token : d) {
+		System.out.println(ttr());
+		/*for (String token : d) {
 			System.out.println(i++ + ": " + token + " ");
 			if (i > 100)
 				break;
+		}*/
+	}
+	
+	public static double ttr() throws IOException {
+		Set<String> ttrset = new HashSet<String>();
+		double wortanzahl = 0;
+		Document d = Document.readFromFile(new File("data/dracula.txt"));
+		for(String token : d) {
+			ttrset.add(token);
+			wortanzahl = wortanzahl +1.0;
+			
 		}
+		return ttrset.size() / wortanzahl;
 	}
 
 	@Override
