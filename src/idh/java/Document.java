@@ -27,25 +27,48 @@ public class Document implements Iterable<String> {
 		return doc;
 	}
 	
-	public String getDocumentText() {
+	public String getDocumentText() { //gibt den gespeicherten Text zurück
 		return documentText;
 	}
 
-	public void setDocumentText(String documentText) {
+	public void setDocumentText(String documentText) { //setzt den gespeicherten Text auf einen neuen Wert
 		this.documentText = documentText;
 	}
+	
+	
+	
+	
+	
+	public double ttr() {
+		Set<String> types = new HashSet<>(); //Set anlegen, um jedes Wort nur ein einziges Mal, egal wie oft es vorkommt, zu speichern (in Variable type)
+		int count = 0;  //Zähler anlegen
+		
+		for (String token : this) { //über alle Wörter gehen
+			types.add(token); //Jedes Wort wird ins Set eingefügt (types.add(token) – doppelte Wörter werden ignoriert
+			count++;
+		}
+		
+		return (double) types.size()/count;
+	}
+	
+	
+	
 	
 	public static final void main(String[] args) throws IOException {
 		Document d = Document.readFromFile(new File("data/dracula.txt"));
 		
-		int i = 0;
-		for (String token : d) {
+		int i = 0;  //Geht durch die ersten 100 Wörter (Tokens) und gibt sie mit einer Nummer aus
+		for (String token : d) {  //man kann mit for(String token : d) durch die Wörter des Dokuments gehen. d -> Objekt der Klasse Document
 			System.out.println(i++ + ": " + token + " ");
 			if (i > 100)
 				break;
 		}
 		
+		double ttrValue = d.ttr();
+		System.out.println("The TTR is " + ttrValue);
+		
 	}
+	
 
 	@Override
 	public Iterator<String> iterator() {
@@ -54,12 +77,12 @@ public class Document implements Iterable<String> {
 			StringTokenizer tokenizer = new StringTokenizer(documentText);
 			
 			@Override
-			public boolean hasNext() {
+			public boolean hasNext() { //prüft, ob noch ein Wort übrig ist
 				return tokenizer.hasMoreTokens();
 			}
 
 			@Override
-			public String next() {
+			public String next() { //gibt das nächste Wort zurück
 				return tokenizer.nextToken();
 			}
 			
