@@ -47,3 +47,5 @@ public class Document implements Iterable<String> {
         System.out.println(d.ttr());
     }
 }
+
+// return value 0.11414552343094934
