@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.StringTokenizer;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Document implements Iterable<String> {
 	String documentText;
@@ -46,6 +48,7 @@ public class Document implements Iterable<String> {
 		return new Iterator<String>() {
 
 			StringTokenizer tokenizer = new StringTokenizer(documentText);
+			private String[] documentTex;
 			
 			@Override
 			public boolean hasNext() {
@@ -57,7 +60,22 @@ public class Document implements Iterable<String> {
 				return tokenizer.nextToken();
 			}
 			
+			public double ttr() {
+			    Set<String> uniqueWords = new HashSet<>();
+			    int totalTokens = 0;
+
+			    for (String token : this.documentTex) {
+			        uniqueWords.add(token);
+			        totalTokens++;
+			    }
+			    
+			    return (double) uniqueWords.size() / totalTokens;
+			}
+			
 		};
+		
+		
+		
 	}
 	
 	
