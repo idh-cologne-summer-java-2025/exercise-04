@@ -45,6 +45,8 @@ public class Document implements Iterable<String> {
 				break;
 		}
 		
+		System.out.println("TTR: " + d.ttr());
+		
 	}
 
 	@Override
@@ -66,5 +68,19 @@ public class Document implements Iterable<String> {
 		};
 	}
 	
+	public double ttr() {
+	    Set<String> types = new HashSet<>();
+	    int tokenCount = 0;
+	    
+	    for (String token : this) {
+	        types.add(token);  
+	        tokenCount++;      
+	    }
+	   
+	    if (tokenCount == 0) {
+	        return 0.0; 
+	    }
+	    return (double) types.size() / tokenCount;
+	}
 	
 }
