@@ -3,8 +3,10 @@ package idh.java;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+
 import java.util.HashSet;
 import java.util.Iterator;
+
 import java.util.Set;
 import java.util.StringTokenizer;
 
@@ -56,15 +58,18 @@ public class Document implements Iterable<String> {
 	public static final void main(String[] args) throws IOException {
 		// TTR-Wert ausgeben
 		Document d = Document.readFromFile(new File("data/dracula.txt"));
+
 		System.out.printf("TTR: %.4f\n", d.ttr());
 
 		// Ausgabe der ersten 100 Tokens zum Test
+
 		int i = 0;
 		for (String token : d) {
 			System.out.println(i++ + ": " + token + " ");
 			if (i > 100)
 				break;
 		}
+		
 	}
 
 	/**
