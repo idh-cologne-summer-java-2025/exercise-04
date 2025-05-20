@@ -37,15 +37,16 @@ public class Document implements Iterable<String> {
 	
 	public static final void main(String[] args) throws IOException {
 		Document d = Document.readFromFile(new File("data/dracula.txt"));
-		
 		int i = 0;
 		for (String token : d) {
 			System.out.println(i++ + ": " + token + " ");
 			if (i > 100)
 				break;
 		}
+		System.out.println("TTR: " +d.ttr());
+		}
 		
-	}
+	
 
 	@Override
 	public Iterator<String> iterator() {
@@ -62,9 +63,18 @@ public class Document implements Iterable<String> {
 			public String next() {
 				return tokenizer.nextToken();
 			}
-			
+				
 		};
 	}
 	
-	
-}
+	public double ttr() {
+		Set<String>ttr = new HashSet<>();	
+		int tokens = 0;
+		for (String token : this) {
+			ttr.add(token);
+			tokens++;
+		}
+		return(double)ttr.size()/tokens;
+		}
+	}
+
