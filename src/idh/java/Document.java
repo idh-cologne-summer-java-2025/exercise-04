@@ -35,17 +35,28 @@ public class Document implements Iterable<String> {
 		this.documentText = documentText;
 	}
 	
-	public static final void main(String[] args) throws IOException {
-		Document d = Document.readFromFile(new File("data/dracula.txt"));
-		
-		int i = 0;
-		for (String token : d) {
-			System.out.println(i++ + ": " + token + " ");
-			if (i > 100)
-				break;
+	public static void main(String[] args) throws IOException {
+	    Document d = Document.readFromFile(new File("data/dracula.txt"));
+	    System.out.printf("TTR: %.4f\n", d.ttr()); // rundet den wert auf vier nachkommastellen 
 		}
-		
+	
+	
+	public double ttr() {
+	    Set<String> types = new HashSet<>();
+	    int tokens = 0;
+
+	    for (String token : this) {
+	        types.add(token);
+	        tokens++;
+	    }
+
+	    if (tokens == 0) {
+	        return 0.0;
+	    }
+
+	    return (double) types.size() / tokens;
 	}
+
 
 	@Override
 	public Iterator<String> iterator() {
