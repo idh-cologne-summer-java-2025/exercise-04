@@ -34,10 +34,26 @@ public class Document implements Iterable<String> {
 	public void setDocumentText(String documentText) {
 		this.documentText = documentText;
 	}
+	public double ttr() {
+	       Set<String> uniqueTokens = new HashSet<>();
+	       int totalTokens = 0;
+	        
+	       // Durchlaufe alle Tokens und zähle sie
+	       for (String token : this) {
+	           uniqueTokens.add(token);  // fügt nur einzigartige Tokens hinzu
+	           totalTokens++;            // erhöht den Zähler für Tokens
+	        }
+	        
+	        // Berechne die TTR, wobei wir sicherstellen, dass totalTokens > 0 ist
+	        return totalTokens > 0 ? (double) uniqueTokens.size() / totalTokens : 0.0;
+	  }
 	
 	public static final void main(String[] args) throws IOException {
 		Document d = Document.readFromFile(new File("data/dracula.txt"));
 		
+		// Berechne und gebe die TTR des Textes aus
+        System.out.println("Die TTR des Textes ist: " + d.ttr());
+        
 		int i = 0;
 		for (String token : d) {
 			System.out.println(i++ + ": " + token + " ");
