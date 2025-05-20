@@ -3,12 +3,14 @@ package idh.java;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 import java.util.StringTokenizer;
 
 public class Document implements Iterable<String> {
 	String documentText;
-
+	
 	public static Document readFromFile(File f) throws IOException {
 		FileReader fileReader = new FileReader(f);
 		int ch;
@@ -21,6 +23,7 @@ public class Document implements Iterable<String> {
 		doc.documentText = b.toString();
 		
 		return doc;
+		
 	}
 	
 	public String getDocumentText() {
@@ -39,6 +42,7 @@ public class Document implements Iterable<String> {
 			if (i > 100)
 				break;
 		}
+			System.out.println("Die TTR beträgt:" + d.ttr());
 	}
 
 	@Override
@@ -60,5 +64,16 @@ public class Document implements Iterable<String> {
 		};
 	}
 	
+	public double ttr() {
+		int tokenCount = 0;
+		Set<String> types = new HashSet<>();
+		for(String token : this) {
+			types.add(token);
+			tokenCount++;
+		}
+		if (tokenCount == 0) return 0.0;
+		return (double) types.size() / tokenCount;
+	
+	}
 	
 }
