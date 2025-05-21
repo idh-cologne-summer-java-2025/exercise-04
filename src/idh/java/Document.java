@@ -3,7 +3,9 @@ package idh.java;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 import java.util.StringTokenizer;
 
 public class Document implements Iterable<String> {
@@ -39,6 +41,7 @@ public class Document implements Iterable<String> {
 			if (i > 100)
 				break;
 		}
+		System.out.println("TTR: " + d.ttr());
 	}
 
 	@Override
@@ -59,6 +62,21 @@ public class Document implements Iterable<String> {
 			
 		};
 	}
-	
-	
+
+	/**
+	 * Diese Methode zählt die Tokens und speichert sie in einem Set. 
+	 * Damit wird jedes Wort nur einmal gezählt. Die TTR ergibt sich aus:
+	 * Anzahl einzigartiger Wörter / Gesamtanzahl Tokens
+	 */
+	public double ttr() {
+		Set<String> types = new HashSet<>(); // zur Speicherung neuer Wörter
+		int tokens = 0; // Token Zähler
+
+		for (String token : this) { // nutzt den Iterator des Dokuments
+			tokens++;
+			types.add(token.toLowerCase()); // normalisiert die Wörter
+		}	
+		return (double) types.size() / tokens; // Berechnung der TTR
+	}
+
 }
