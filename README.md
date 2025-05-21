@@ -10,7 +10,7 @@ Klonen Sie dieses Repository direkt in Eclipse und importieren Sie das Projekt. 
 
 ## Aufgabe 1
 
-Die sogenannte Type-Token-Relation (TTR) ist ein Standardmaß aus der Korpuslinguistik, um etwas über die sprachliche Variabilität eines Textes zu erfahren. Dabei wird die Anzahl der verschiedenen Wörter (= Types) durch die Anzahl der Wörter (= Tokens) geteilt. Der Text "Der Hund hat den Hund beschnüffelt." z.B. hätte eine TTR von 6/7, da nur das Wort "Hund" doppelt vorkommt (wir ignorieren Satzzeichen).
+Die sogenannte Type-Token-Relation (TTR) ist ein Standardmaß aus der Korpuslinguistik, um etwas über die sprachliche Variabilität eines Textes zu erfahren. Dabei wird die Anzahl der verschiedenen Wörter (= Types) durch die Anzahl der Wörter (= Tokens) geteilt. Der Text "Der Hund hat den Hund beschnüffelt." z.B. hätte eine TTR von 5/6, da nur das Wort "Hund" doppelt vorkommt (wir ignorieren Satzzeichen).
 
 In Übung 5 haben wir einen Iterator implementiert, der uns die Tokens eines Dokumentes liefert. Sie finden die Referenzimplementierung von Übung 5 hier in diesem Repository. Basierend darauf, können wir sehr leicht die TTR des Textes bestimmen (der wieder in der Datei `data/dracula.txt` liegt), indem wir die Tokens einmal zählen und außerdem in eine Menge einfügen. Da die Menge jedes Wort nur einmal enthalten kann, entspricht die Größe der Menge hinterher der Anzahl der Types.
 

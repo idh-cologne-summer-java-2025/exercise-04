@@ -50,8 +50,8 @@ public class Document implements Iterable<String> {
 		System.out.println(tokens.size());
 		System.out.println(types.size());
 		
-		double ttr = types.size() / tokens.size();
-		//TODO: Das ist doch irgendwie falsch hier?
+		double ttr =  types.size() / (double) tokens.size();
+		
 		System.out.println(ttr);
 		
 	}
