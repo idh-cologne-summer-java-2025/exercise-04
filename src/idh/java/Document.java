@@ -26,6 +26,18 @@ public class Document implements Iterable<String> {
 		
 		return doc;
 	}
+
+	public static double getTTR(Document d) {
+		StringTokenizer tokenizer = new StringTokenizer(d.documentText);
+		List<String> tokens = new ArrayList<String>();
+		Set<String> uniqueWords = new HashSet<String>();
+		while (tokenizer.hasMoreTokens()) {
+			String token = tokenizer.nextToken();
+			tokens.add(token);
+			uniqueWords.add(token);
+		}
+		return (double) uniqueWords.size() / (double) tokens.size();
+	}
 	
 	public String getDocumentText() {
 		return documentText;
@@ -41,9 +53,11 @@ public class Document implements Iterable<String> {
 		int i = 0;
 		for (String token : d) {
 			System.out.println(i++ + ": " + token + " ");
-			if (i > 100)
+			if (i > 10)
 				break;
 		}
+
+		System.out.println("TTR: " + Document.getTTR(d));
 		
 	}
 
