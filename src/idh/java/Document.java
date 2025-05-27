@@ -3,10 +3,10 @@ package idh.java;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
+//import java.util.List;
 import java.util.Set;
 import java.util.StringTokenizer;
 
@@ -44,6 +44,7 @@ public class Document implements Iterable<String> {
 			if (i > 100)
 				break;
 		}
+		System.out.println("TTR: " + d.ttr());
 		
 	}
 
@@ -66,5 +67,20 @@ public class Document implements Iterable<String> {
 		};
 	}
 	
+	public double ttr() {
+	    Set<String> types = new HashSet<>();
+	    int tokenCount = 0;
+
+	    for (String token : this) {
+	        types.add(token);
+	        tokenCount++;
+	    }
+
+	    if (tokenCount == 0) {
+	        return 0.0; // Division durch Null vermeiden
+	    }
+
+	    return (double) types.size() / tokenCount;
+	}
 	
 }
