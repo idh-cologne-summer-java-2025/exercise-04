@@ -38,7 +38,7 @@ public class Document implements Iterable<String> {
 	public static final void main(String[] args) throws IOException {
 		Document d = Document.readFromFile(new File("data/dracula.txt"));
 		
-		int i = 0;
+/*		int i = 0;
 		for (String token : d) {
 			System.out.println(i++ + ": " + token + " ");
 			if (i > 100)
@@ -46,7 +46,22 @@ public class Document implements Iterable<String> {
 		}
 		
 	}
+*/
 
+		Set<String> types = new HashSet<String>();
+		List<String> tokens = new ArrayList<String>();
+		
+		for (String onetoken : d) {
+			tokens.add(onetoken);
+			types.add(onetoken);
+		}
+		
+		double ttr =  types.size() / (double) tokens.size();
+		
+		System.out.println(ttr);
+	}
+		
+	
 	@Override
 	public Iterator<String> iterator() {
 		return new Iterator<String>() {
